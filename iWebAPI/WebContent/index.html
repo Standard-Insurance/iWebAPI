@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		var settings = {
+	  "async": true,
+	  "crossDomain": true,
+	  "url": "http://192.168.124.61:8080/iWebAPI/api/policy/get?branchCode=IT&prodcode=PCP&polno=100018928",
+	  "method": "GET",
+	  "headers": {
+	    "cache-control": "no-cache",
+	    "postman-token": "8b9b4b0b-af60-d351-fe41-f377be566890"
+	  }
+	}
+	
+	$.ajax(settings).done(function (response) {
+	  alert(response);
+	});
+	})
+</script>
+</body>
+</html>

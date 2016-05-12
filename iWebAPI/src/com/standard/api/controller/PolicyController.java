@@ -1,8 +1,13 @@
 package com.standard.api.controller;
 
+import javax.validation.Valid;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +24,7 @@ import com.standard.api.service.PolicyHeaderService;
 public class PolicyController 
 {
 	@Autowired PolicyHeaderService policyHeaderService;
+	private static final Logger log = Logger.getLogger(PolicyController.class);
 	
 	@RequestMapping(value = "/policy/get", method = RequestMethod.GET)
 	public ResponseEntity<IwritePolhdr> get(@RequestParam("branchCode") String branchCode, @RequestParam("prodcode") String prodcode, @RequestParam("polno") int polno)
@@ -35,7 +41,7 @@ public class PolicyController
 	}
 	
 	@RequestMapping(value = "/policy/post", method = RequestMethod.POST)
-	public ResponseEntity<Object> post(@RequestBody IwritePolhdr policy)
+	public ResponseEntity<Object> post(@Valid @RequestBody IwritePolhdr policy)
 	{
 		try
 		{
@@ -43,6 +49,7 @@ public class PolicyController
 		}
 		catch(Exception e)
 		{
+			log.error(e.getMessage(), e);
 			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
@@ -51,7 +58,7 @@ public class PolicyController
 	}
 	
 	@RequestMapping(value = "/policy/update", method = RequestMethod.PUT)
-	public ResponseEntity<Object> update(@RequestBody IwritePolhdr policy)
+	public ResponseEntity<Object> update(@Validated @RequestBody IwritePolhdr policy)
 	{
 		try
 		{
@@ -60,6 +67,7 @@ public class PolicyController
 		}
 		catch(Exception e)
 		{
+			log.error(e.getMessage(), e);
 			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
@@ -77,6 +85,7 @@ public class PolicyController
 		}
 		catch(Exception e)
 		{
+			log.error(e.getMessage(), e);
 			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		

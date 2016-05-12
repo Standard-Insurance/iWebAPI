@@ -1,5 +1,7 @@
 package com.standard.api.service;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.standard.api.dao.PolicyHeaderDao;
 import com.standard.api.model.IwritePolhdr;
 import com.standard.api.model.IwritePolhdrId;
@@ -10,12 +12,14 @@ public class PolicyHeaderServiceImpl implements PolicyHeaderService
 	private PolicyHeaderDao policyHeaderDao;
 	
 	@Override
+	@Transactional(readOnly = true)
 	public IwritePolhdr get(IwritePolhdrId id)
 	{
 		return policyHeaderDao.get(id);
 	}
 
 	@Override
+	@Transactional
 	public void save(IwritePolhdr polhdr) 
 	{
 		policyHeaderDao.save(polhdr);
@@ -23,6 +27,7 @@ public class PolicyHeaderServiceImpl implements PolicyHeaderService
 	}
 
 	@Override
+	@Transactional
 	public void update(IwritePolhdr polhdr) 
 	{
 		policyHeaderDao.update(polhdr);
@@ -30,6 +35,7 @@ public class PolicyHeaderServiceImpl implements PolicyHeaderService
 	}
 
 	@Override
+	@Transactional
 	public void delete(IwritePolhdrId id) 
 	{
 		IwritePolhdr polhdr = get(id);

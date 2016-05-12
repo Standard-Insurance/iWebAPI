@@ -20,7 +20,7 @@
 
 		<property name="locations">
 			<list>
-				<value>/WEB-INF/resources/db.properties</value>
+				<value>file:/app/settings/db.properties</value>
 			</list>
 		</property>
 		<property name="fileEncoding" value="utf-8" />
